@@ -1,0 +1,32 @@
+---
+# Based on:
+# https://docs.snips.ai/articles/raspberrypi/manual-setup
+
+- name: Adds apt key
+  apt_key:
+    keyserver: gpg.mozilla.org
+    id: D4F50CDCA10A2849
+
+# TODO: Remove replace when https://github.com/snipsco/snips-issues/issues/161 is fixed
+- name: Adds apt repository
+  apt_repository:
+      repo: https://raspbian.snips.ai/{{ ansible_distribution_release | replace('buster', 'bionic') }} stable main
+      state: present
+      update_cache: true
+
+# TODO: Remove libatlas3 when https://github.com/snipsco/snips-issues/issues/161 is fixed
+- name: Install required packages
+  apt:
+    name:
+      - snips-platform-voice
+      - snips-template
+      - snips-template snips-skill-server
+      - 'libatlas3-base=3.10.3-8+rpi1'
+    state: present
+
+- include_tasks: update-assistant.yml
+  tags:
+    - update-assistant
+
+- include_tasks: install-personal-wakeword.yml
+  when: snips_personal_wakeword_install

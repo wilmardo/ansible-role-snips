@@ -1,0 +1,19 @@
+---
+- name: Assert that download url was passed
+  ass
+- name: Download assisant
+  get_url:
+    url: "{{ assistant_url }}"
+    dest: "{{ snips_assistant_download_location }}"
+
+- name: Remove previous assistant
+  file:
+    path: /usr/share/snips/assistant/
+    state: absent
+
+- name: Install new assistant
+  unarchive:
+    src: "{{ snips_assistant_download_location }}"
+    dest: /usr/share/snips/
+    remote_src: true
+  notify: restart snips

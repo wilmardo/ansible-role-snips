@@ -1,0 +1,5 @@
+---
+- name: restart snips
+  systemd:
+    name: 'snips-*'
+    state: restarted

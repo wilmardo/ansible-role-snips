@@ -1,0 +1,16 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - git
+      - python-numpy
+      - python-pyaudio
+      - python-soundfile
+    state: present
+
+- name: Clone personal hotword repository
+  git:
+    repo: 'https://github.com/snipsco/snips-record-personal-hotword.git'
+    dest: /home/pi/
+    depth: 1
+    version: master
