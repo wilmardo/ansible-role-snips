@@ -58,10 +58,14 @@
       line: "mqtt_username = {{ snips_mqtt_username }}"
     - regexp: "^mqtt_password = "
       line: "mqtt_password = {{ snips_mqtt_password }}"
+  no_log: true
 
+# NOTE: Only runs when update_assistant is passed and snips_assistant_url is defined
 - include_tasks: update-assistant.yml
+  when: snips_assistant_url
   tags:
-    - update-assistant
+    - never
+    - update_assistant
 
 - include_tasks: install-personal-wakeword.yml
   when: snips_personal_wakeword_install

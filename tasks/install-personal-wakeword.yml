@@ -11,6 +11,6 @@
 - name: Clone personal hotword repository
   git:
     repo: 'https://github.com/snipsco/snips-record-personal-hotword.git'
-    dest: /home/pi/
+    dest: /home/pi/snips-record-personal-hotword
     depth: 1
     version: master
