@@ -49,8 +49,8 @@
 - name: Setup MQTT
   lineinfile:
     path: /etc/snips.toml
-    regexp: "{{ regexp }}"
-    line: "{{ line }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
   loop:
     - regexp: "^mqtt = "
       line: "mqtt = {{ snips_mqtt_server }}"
