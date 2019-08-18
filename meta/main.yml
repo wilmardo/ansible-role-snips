@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: wilmardo
+  description: |
+    Role to install Snips!
+  license: BSD-3-Clause-Clear
+
+  min_ansible_version: 2.8
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - stretch
+    - buster
+
+  - name: Debian
+    versions:
+    - stretch
+    - buster
+
+  galaxy_tags:
+    - snips
+
+dependencies: []
