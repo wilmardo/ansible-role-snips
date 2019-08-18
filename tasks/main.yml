@@ -10,7 +10,7 @@
 # TODO: Remove replace when https://github.com/snipsco/snips-issues/issues/161 is fixed
 - name: Adds apt repository
   apt_repository:
-      repo: "deb https://raspbian.snips.ai/{{ ansible_distribution_release | replace('buster', 'bionic') }} stable main"
+      repo: "deb https://raspbian.snips.ai/{{ ansible_distribution_release | replace('buster', 'stretch') }} stable main"
       state: present
       update_cache: true
 
