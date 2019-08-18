@@ -50,6 +50,7 @@
   lineinfile:
     path: /etc/snips.toml
     regexp: "{{ item.regexp }}"
+    insertafter: "^# {{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
     - regexp: "mqtt = "
