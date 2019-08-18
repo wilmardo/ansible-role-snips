@@ -13,11 +13,22 @@
       repo: "deb https://raspbian.snips.ai/{{ ansible_distribution_release | replace('buster', 'stretch') }} stable main"
       state: present
 
+- name: Adds Debian arm key
+  apt_key:
+    url: https://ftp-master.debian.org/keys/release-10.asc
+
+- name: Adds apt repository
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian buster non-free"
+    state: present
+
 # TODO: Remove libatlas3 when https://github.com/snipsco/snips-issues/issues/161 is fixed
 - name: Install required packages
   apt:
     name:
       # snips-platform-voice except mosquitto
+      - libgfortran3
+      - 'libatlas3-base=3.10.3-8+rpi1'
       - snips-analytics
       - snips-asr
       - snips-audio-server
@@ -27,7 +38,6 @@
       - snips-tts
       - snips-template
       - snips-skill-server
-      - 'libatlas3-base=3.10.3-8+rpi1'
     state: present
     update_cache: true
 
