@@ -17,13 +17,37 @@
 - name: Install required packages
   apt:
     name:
-      - snips-platform-voice
-      - snips-template
+      # snips-platform-voice except mosquitto
+      - snips-analytics
+      - snips-asr
+      - snips-audio-server
+      - snips-dialogue
+      - snips-hotword
+      - snips-queries
+      - snips-tts
       - snips-template
       - snips-skill-server
       - 'libatlas3-base=3.10.3-8+rpi1'
     state: present
     update_cache: true
+
+- name: Setup devices
+  copy:
+    src: asound.conf
+    dest: /etc/asound.conf
+
+- name: Setup MQTT
+  lineinfile:
+    path: /etc/snips.toml
+    regexp: "{{ regexp }}"
+    line: "{{ line }}"
+  loop:
+    - regexp: "^mqtt = "
+      line: "mqtt = {{ snips_mqtt_server }}"
+    - regexp: "^mqtt_username = "
+      line: "mqtt_username = {{ snips_mqtt_username }}"
+    - regexp: "^mqtt_password = "
+      line: "mqtt_password = {{ snips_mqtt_password }}"
 
 - include_tasks: update-assistant.yml
   tags:

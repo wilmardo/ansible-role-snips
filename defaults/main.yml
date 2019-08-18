@@ -1,3 +1,8 @@
 ---
 snips_assistant_download_location: /home/pi/assistant.zip
 snips_personal_wakeword_install: true
+snips_assistant_url: ~
+
+snips_mqtt_server: ~
+snips_mqtt_user: ~
+snips_mqtt_password: ~

@@ -1,6 +1,8 @@
 ---
 - name: Assert that download url was passed
-  ass
+  assert:
+    that: 
+
 - name: Download assisant
   get_url:
     url: "{{ assistant_url }}"
