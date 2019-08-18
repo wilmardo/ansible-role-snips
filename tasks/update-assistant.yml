@@ -1,11 +1,7 @@
 ---
-- name: Assert that download url was passed
-  assert:
-    that: 
-
 - name: Download assisant
   get_url:
-    url: "{{ assistant_url }}"
+    url: "{{ snips_assistant_url }}"
     dest: "{{ snips_assistant_download_location }}"
 
 - name: Remove previous assistant
