@@ -52,12 +52,12 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
-    - regexp: "^mqtt = "
-      line: "mqtt = {{ snips_mqtt_server }}"
-    - regexp: "^mqtt_username = "
-      line: "mqtt_username = {{ snips_mqtt_username }}"
-    - regexp: "^mqtt_password = "
-      line: "mqtt_password = {{ snips_mqtt_password }}"
+    - regexp: "mqtt = "
+      line: 'mqtt = "{{ snips_mqtt_server }}"'
+    - regexp: "mqtt_username = "
+      line: 'mqtt_username = "{{ snips_mqtt_username }}"'
+    - regexp: "mqtt_password = "
+      line: 'mqtt_password = "{{ snips_mqtt_password }}"'
   no_log: true
 
 # NOTE: Only runs when update_assistant is passed and snips_assistant_url is defined
