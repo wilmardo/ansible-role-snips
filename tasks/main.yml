@@ -12,7 +12,6 @@
   apt_repository:
       repo: "deb https://raspbian.snips.ai/{{ ansible_distribution_release | replace('buster', 'stretch') }} stable main"
       state: present
-      update_cache: true
 
 # TODO: Remove libatlas3 when https://github.com/snipsco/snips-issues/issues/161 is fixed
 - name: Install required packages
@@ -23,6 +22,7 @@
       - snips-template snips-skill-server
       - 'libatlas3-base=3.10.3-8+rpi1'
     state: present
+    update_cache: true
 
 - include_tasks: update-assistant.yml
   tags:
